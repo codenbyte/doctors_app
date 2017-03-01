@@ -1,0 +1,32 @@
+<div class='container'>
+	<div class="col-md-2"></div>
+	<div class="col-md-8" ng-controller='appointmentsController'>
+		<a class="btn btn-default pull-right" ng-click='logout()'href="#!/loggedout">Sign Out</a>
+		<a class="btn btn-default pull-right" href="#!/"><span class="glyphicon glyphicon-home"></span> Home</a>
+		<h2>My Doctor's Appointment List</h2>
+		<p class='pull-right'>Search:  <input type='text' ng-model='filter_name' placeholder='Search...' /></p>
+		<table class='table table-striped'>
+			<tr>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Patient Name</th>
+				<th>Complaints</th>
+				<th>Action</th>
+			</tr>
+			<tr ng-repeat='appointment in appointments | orderBy: "-created_at" | filter: filter_name' ng-if='isPast(appointment)'>
+					<td ng-bind='appointment.date | date: "longDate"'></td>
+					<td ng-bind='appointment.time | date: "shortTime"'></td>
+					<td ng-bind='appointment.patient_name'></td>
+					<td>{{appointment.complain}}</td>
+					<td>
+						<a class='btn btn-default pull-right' ng-if='appointment.patient_name == current_user' ng-click='removeAppointment(appointment)'>Cancel</a>
+					</td>
+			</tr>
+		</table>
+		<form>
+			<a href='#!/appointment/new' class='btn btn-success pull-right'>Add New Appointment</a>
+		</form>
+		<p style='color:red;' ng-bind='errorInRemove'></p>
+</div>
+</div>
+<div class="col-md-2"></div>

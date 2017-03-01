@@ -1,0 +1,19 @@
+<div class="col-md-2"></div>
+	<div class="col-md-8" ng-controller='appointmentsController'>
+			<h1>New Appointment</h1>
+			<br>
+			<form>
+				<h4>Date</h4>
+				<input type='date' ng-model='newAppointment.date' class='form-control'><br>
+				<h4>Time</h4>
+				<input type='time' ng-model='newAppointment.time' class='form-control'><br>
+				<textarea rows='8' ng-model='newAppointment.complain' class='form-control' placeholder="What's your reason for Appointment, enter your text here (10 characters minimum)"></textarea></p>
+				<a href='#!/appointment/new' class='btn btn-success pull-right' ng-click='addAppointment()'>Add Appointment</a>
+
+				<a href="#!/" class='btn btn-default pull-right'>Cancel</a>
+				<div ng-repeat='message in errorMessages'>
+					<p style='color:red;' ng-bind='message'></p>
+				</div>
+			</form>
+	</div>
+<div class="col-md-2"></div>
